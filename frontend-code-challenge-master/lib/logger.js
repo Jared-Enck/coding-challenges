@@ -30,7 +30,7 @@ var api = module.exports = function init (app) {
     }));
   }
 
-  var logger = new (winston.Logger)({
+  var logger = new (winston.createLogger)({
     transports: [
     transport
     ]
