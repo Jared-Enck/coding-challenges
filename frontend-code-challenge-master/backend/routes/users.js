@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var _ = require('lodash');
-var logger = require('../lib/logger');
-var log = logger();
+const express = require('express');
+const router = express.Router();
+const _ = require('lodash');
+const logger = require('../lib/logger');
+const log = logger();
 
-var users = require('../init_data.json').data;
-var curId = _.size(users);
+const users = require('../init_data.json').data;
+const curId = _.size(users);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 
 /* Create a new user */
 router.post('/', function(req, res) {
-  var user = req.body;
+  const user = req.body;
   user.id = curId++;
   if (!user.state) {
     user.state = 'pending';
@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
 
 /* Get a specific user by id */
 router.get('/:id', function(req, res, next) {
-  var user = users[req.params.id];
+  const user = users[req.params.id];
   if (!user) {
     return next();
   }
@@ -35,7 +35,7 @@ router.get('/:id', function(req, res, next) {
 
 /* Delete a user by id */
 router.delete('/:id', function(req, res) {
-  var user = users[req.params.id];
+  const user = users[req.params.id];
   delete users[req.params.id];
   res.status(204);
   log.info('Deleted user', user);
@@ -44,7 +44,7 @@ router.delete('/:id', function(req, res) {
 
 /* Update a user by id */
 router.put('/:id', function(req, res, next) {
-  var user = req.body;
+  const user = req.body;
   if (user.id != req.params.id) {
     return next(new Error('ID paramter does not match body'));
   }

@@ -1,17 +1,17 @@
-var winston = require('winston');
-var expressWinston = require('express-winston');
+const winston = require('winston');
+const expressWinston = require('express-winston');
 
 /*
  *  Setup logging for the application
  *  returns a logging instance
  */
 
-var transport = new winston.transports.Console({
+const transport = new winston.transports.Console({
   json: false,
   colorize: true
 });
 
-var api = module.exports = function init (app) {
+const api = module.exports = function init (app) {
   if (app) {
     app.use(expressWinston.errorLogger({
       transports: [
@@ -30,7 +30,7 @@ var api = module.exports = function init (app) {
     }));
   }
 
-  var logger = new (winston.createLogger)({
+  const logger = new (winston.createLogger)({
     transports: [
     transport
     ]
