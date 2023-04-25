@@ -1,6 +1,9 @@
-const app = require('./app')
+const app = require('./app');
+const logger = require('./lib/logger');
+const log = logger(app);
 
-const port = process.env.PORT || 5000
-app.listen(port, function() {
-  console.log(`Express server listening on http://localhost:${port}`);
+const port = process.env.PORT || 5000;
+
+const server = app.listen(port, function() {
+  log.info(`Express server listening on http://localhost:${port}`, server.address().port);
 });

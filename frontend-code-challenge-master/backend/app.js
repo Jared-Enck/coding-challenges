@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const users = require('./routes/users');
 
 const app = express();
+const logger = require('./lib/logger');
+const log = logger(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
