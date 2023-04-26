@@ -5,7 +5,7 @@ const logger = require('../lib/logger');
 const log = logger();
 
 const users = require('../init_data.json').data;
-const curId = _.size(users);
+let curId = _.size(users);
 
 /* GET users listing. */
 router.get('/', function(req, res) {

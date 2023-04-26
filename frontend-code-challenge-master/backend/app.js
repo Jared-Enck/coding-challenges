@@ -4,6 +4,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require("cors");
 
 const users = require('./routes/users');
 
@@ -11,6 +12,7 @@ const app = express();
 const logger = require('./lib/logger');
 const log = logger(app);
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
