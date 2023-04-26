@@ -13,6 +13,13 @@ export default function UserCard({user}) {
     setActivateUserID(user.id)
   }
 
+  const isActive = state === 'active'
+
+  const isActiveClass = 
+    isActive
+      ? 'success'
+      : 'warning'
+
   return (
     <div className="card-body">
       <div className="card-title d-flex">
@@ -29,15 +36,20 @@ export default function UserCard({user}) {
       <span>
         {email}
       </span><br/>
-      <div className="d-flex justify-content-between">
-        <span className="align-self-center">
-          Status: {state}
-        </span>
+      <div className="d-flex">
+        <div className="align-self-center">
+          <span>
+            Status:       
+          </span>
+          <span className={`ps-2 text-${isActiveClass}`}>
+            {state}
+          </span>
+        </div>
         {
-          state !== 'active'
+          !isActive
             ? (
               <button 
-                className="btn btn-sm btn-primary"
+                className="btn btn-sm btn-primary ms-auto"
                 onClick={handleActivate}
               >
                 Activate
